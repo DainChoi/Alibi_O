@@ -2,10 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
+        android:id="@+id/action_today"
+        android:enabled="true"
+        android:icon="@drawable/ic_insert_emoticon_black_24dp"
+        android:title="Today"/>
+
+    <item
         android:id="@+id/action_record"
         android:enabled="true"
         android:icon="@drawable/ic_access_time_black_24dp"
         android:title="Record"/>
+
+    <item
+        android:id="@+id/action_schedule"
+        android:enabled="true"
+        android:icon="@drawable/ic_event_available_black_24dp"
+        android:title="Schedule"/>
 
     <item
         android:id="@+id/action_salary"
