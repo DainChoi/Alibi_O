@@ -20,10 +20,10 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recycle1;
     RecycleAdapter adapter;
 
-    int imgID[] = {R.drawable.logo, R.drawable.logo, R.drawable.logo, R.drawable.logo, R.drawable.logo,
-            R.drawable.logo, R.drawable.logo, R.drawable.logo, R.drawable.logo, R.drawable.logo};
+    int imgID[] = {R.drawable.icon, R.drawable.icon2, R.drawable.icon3, R.drawable.icon4, R.drawable.icon5,
+            R.drawable.icon6, R.drawable.icon7, R.drawable.icon8, R.drawable.icon9, R.drawable.icon9};
 
-    String title[] = {"logo1", "logo2", "logo3", "logo4", "logo5", "logo6", "logo7", "logo8", "logo9", "logo10"};
+    String title[] = {"버거킹 충북대점", "노랑통닭 복대점", "설빙 율량점", "logo4", "logo5", "logo6", "logo7", "logo8", "logo9", "logo10"};
 
     String content[] = {"test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9", "test10"};
 

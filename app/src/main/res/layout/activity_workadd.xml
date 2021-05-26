@@ -191,7 +191,7 @@
         android:id="@+id/btn_check"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="30dp"
         android:background="#00FFFFFF"
         android:src="@drawable/btn_check"
         app:layout_constraintBottom_toBottomOf="parent"
