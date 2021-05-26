@@ -66,6 +66,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        ImageButton btn_workadd = findViewById(R.id.btn_workadd);
+        btn_workadd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, WorkaddActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         // 탈퇴 처리
         // mFirebaseAuth.getCurrentUser().delete();
     }
