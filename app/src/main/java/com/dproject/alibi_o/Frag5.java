@@ -1,9 +1,11 @@
 package com.dproject.alibi_o;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +19,16 @@ public class Frag5 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag5, container, false);
+        ImageButton btn_modify = (ImageButton) view.findViewById(R.id.btn_modify);
+
+        btn_modify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // ModifyActivity로 이동
+                Intent intent = new Intent(getActivity(), ModifyActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }
