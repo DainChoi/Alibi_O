@@ -31,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar_size" />
 
     <EditText
-        android:id="@+id/title_input"
+        android:id="@+id/title_input2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -50,10 +50,10 @@
         android:text="매장 ID"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_input" />
+        app:layout_constraintTop_toBottomOf="@+id/title_input2" />
 
     <EditText
-        android:id="@+id/id_input"
+        android:id="@+id/id_input2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -72,10 +72,10 @@
         android:text="매장 주소 (선택)"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/id_input" />
+        app:layout_constraintTop_toBottomOf="@+id/id_input2" />
 
     <EditText
-        android:id="@+id/address_input"
+        android:id="@+id/address_input2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -94,9 +94,10 @@
         android:text="Icon"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/address_input" />
+        app:layout_constraintTop_toBottomOf="@+id/address_input2" />
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -109,9 +110,9 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:weightSum="5"
-            android:layout_margin="5dp">
+            android:weightSum="5">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -147,10 +148,10 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:layout_weight="1"
-            android:weightSum="5"
 
-            android:layout_margin="5dp">
+            android:weightSum="5">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -186,7 +187,32 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/update_button"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:text="Update"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/delete_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
+    <Button
+        android:id="@+id/delete_button"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        android:text="Delete"
+        android:textAllCaps="false"
+        android:textColor="#FF0000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+<!--
     <ImageButton
         android:id="@+id/btn_check"
         android:layout_width="wrap_content"
@@ -197,5 +223,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+        -->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

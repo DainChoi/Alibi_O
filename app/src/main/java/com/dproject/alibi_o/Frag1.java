@@ -17,7 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 public class Frag1 extends Fragment {
 
     private View view;
-
+/*
     RecyclerView recycle1;
     RecycleAdapter adapter;
 
@@ -28,13 +28,13 @@ public class Frag1 extends Fragment {
 
     String content[] = {"test1", "test2", "test3", "test4", "test5", "test6", "test7", "test8", "test9", "test10"};
 
-
+*/
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag1, container, false);
 
-
+/*
         recycle1 = (RecyclerView) view.findViewById(R.id.recycle1);
 
         adapter = new RecycleAdapter();
@@ -54,7 +54,7 @@ public class Frag1 extends Fragment {
                // Toast.makeText(getApplicationContext(),data.title+"가 선택됨",Toast.LENGTH_SHORT).show();
 
             }
-        });
+        });*/
 
         ImageButton btn_back = (ImageButton) view.findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
