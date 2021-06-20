@@ -94,10 +94,8 @@ public class UpdateActivity extends AppCompatActivity {
 
     void confirmDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //builder.setTitle("Delete " + title + " ?");
         builder.setTitle(title + " 삭제");
-        //builder.setMessage("Are you sure you want to delete " + title + " ?");
-        builder.setMessage(title + " 을(를) 삭제하시겠습니까?"); 
+        builder.setMessage(title + " 을(를) 삭제하시겠습니까?");
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
