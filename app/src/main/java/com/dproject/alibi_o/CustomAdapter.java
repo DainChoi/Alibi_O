@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,7 +47,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        holder.work_num_txt.setText(String.valueOf(work_num.get(position)));
+        //holder.work_num_txt.setText(String.valueOf(work_num.get(position)));
         holder.work_title_txt.setText(String.valueOf(work_title.get(position)));
         holder.work_id_txt.setText(String.valueOf(work_id.get(position)));
         holder.work_address_txt.setText(String.valueOf(work_address.get(position)));
@@ -73,7 +74,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView work_num_txt, work_title_txt, work_id_txt, work_address_txt;
+        ImageView work_num_txt;
+        TextView  work_title_txt, work_id_txt, work_address_txt;
         LinearLayout mainLayout;
 
         MyViewHolder(@NonNull View itemView) {
