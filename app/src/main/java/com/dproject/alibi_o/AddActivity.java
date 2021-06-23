@@ -25,7 +25,7 @@ public class AddActivity extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                
                 // 오류
                 //Intent intent = new Intent(AddActivity.this, Frag4.class);
                 //startActivity(intent);
