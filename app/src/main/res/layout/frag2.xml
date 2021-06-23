@@ -6,6 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageButton
+        android:id="@+id/btn_notify"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="#00FFFFFF"
+        android:src="@drawable/btn_notify"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <FrameLayout
         android:id="@+id/main_frame"
         android:layout_width="match_parent"
@@ -13,23 +24,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
         <CalendarView
             android:id="@+id/calendarView"
-            android:layout_marginTop="75dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-
-        <ImageButton
-            android:id="@+id/btn_notify"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="310dp"
-            android:layout_marginTop="30dp"
-            android:background="#00FFFFFF"
-            android:src="@drawable/btn_notify"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_marginTop="75dp" />
+
 
         <TextView
             android:id="@+id/S_time1"
@@ -45,8 +46,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="450dp"
-            android:textColor="#B2B2B2"
-            android:text="E_Time" />
+            android:text="E_Time"
+            android:textColor="#B2B2B2" />
 
         <TextView
             android:id="@+id/S_time2"
@@ -62,8 +63,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="535dp"
-            android:textColor="#B2B2B2"
-            android:text="E_Time" />
+            android:text="E_Time"
+            android:textColor="#B2B2B2" />
 
         <TextView
             android:id="@+id/S_time3"
@@ -79,8 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="625dp"
-            android:textColor="#B2B2B2"
-            android:text="E_Time" />
+            android:text="E_Time"
+            android:textColor="#B2B2B2" />
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
