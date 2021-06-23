@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ImageButton btn_workadd;
+    ImageButton btn_setting;
     ImageView empty_imageview;
     TextView no_data;
 
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.recyclerView);
         btn_workadd = findViewById(R.id.btn_workadd);
+        btn_setting = findViewById(R.id.btn_setting);
         empty_imageview = findViewById(R.id.empty_imageview);
         no_data = findViewById(R.id.no_data);
 
@@ -67,6 +69,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 Intent intent = new Intent(MainActivity.this, WorkaddActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        ImageButton btn_setting = findViewById(R.id.btn_setting);
+        btn_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(MainActivity.this, SettingActivity.class);
                 startActivity(intent);
                 finish();
             }
