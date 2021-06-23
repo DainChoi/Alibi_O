@@ -18,8 +18,10 @@ public class ModifyActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(ModifyActivity.this, Frag5.class);
-                startActivity(intent); // 오류
+                // activity -> fragment 불가능
+                // activity -> frag포함 activity -> fragment 이동
+                Intent intent = new Intent(ModifyActivity.this,WorkActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
             }
         });

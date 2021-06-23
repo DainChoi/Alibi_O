@@ -25,11 +25,12 @@ public class AddActivity extends AppCompatActivity {
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
-                // 오류
-                //Intent intent = new Intent(AddActivity.this, Frag4.class);
-                //startActivity(intent);
-                //finish();
+
+                // activity -> fragment 불가능
+                // activity -> frag포함 activity -> fragment 이동
+                Intent intent = new Intent(AddActivity.this,WorkActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                finish();
             }
         });
     }
