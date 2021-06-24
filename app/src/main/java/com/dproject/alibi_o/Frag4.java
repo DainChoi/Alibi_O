@@ -1,5 +1,6 @@
 package com.dproject.alibi_o;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,8 +31,8 @@ public class Frag4 extends Fragment {
 
 
     MyDatabaseHelperFrag4 myDB;
-    ArrayList<String> work_pic, work_title;
-    CustomAdapterFrag4 customAdapter;
+    ArrayList<String> work_num, work_title;
+    CustomAdapterFrag4 customAdapterfrag4;
     ImageButton btn_delete2;
 
     @Nullable
@@ -53,15 +55,17 @@ public class Frag4 extends Fragment {
         });
 
         myDB = new MyDatabaseHelperFrag4(getActivity().getApplicationContext());
-        work_pic = new ArrayList<>();
+        work_num = new ArrayList<>();
         work_title = new ArrayList<>();
 
         storeDataInArrays();
 
-        customAdapter = new CustomAdapterFrag4(getActivity(),getActivity().getApplicationContext(),
-                work_pic, work_title, btn_delete2);
-        recyclerView.setAdapter(customAdapter);
+        customAdapterfrag4 = new CustomAdapterFrag4(getActivity(),getActivity().getApplicationContext(),
+                work_num, work_title, btn_delete2);
+        recyclerView.setAdapter(customAdapterfrag4);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+
+
 
         return view;
     }
@@ -76,7 +80,7 @@ public class Frag4 extends Fragment {
             no_data.setVisibility(View.VISIBLE);
         }else{
             while (cursor.moveToNext()){
-                work_pic.add(cursor.getString(0));
+                work_num.add(cursor.getString(0));
                 work_title.add(cursor.getString(1));
             }
             empty_imageview.setVisibility(View.GONE);
