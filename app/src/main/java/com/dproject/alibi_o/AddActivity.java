@@ -1,40 +1,26 @@
 package com.dproject.alibi_o;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.SearchView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -42,7 +28,7 @@ public class AddActivity extends AppCompatActivity {
     private ImageButton btn_check, mSearchBtn;
     private RecyclerView recyclerView;
   //  private RecyclerView.Adapter adapter;
-    private CustomAdapterFrag4 customAdapterFrag4;
+    private CustomAdapterAdd customAdapterAdd;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<UserAccount> arrayList;
     private FirebaseDatabase database;
@@ -80,7 +66,7 @@ public class AddActivity extends AppCompatActivity {
                     arrayList.add(userAccount); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
                 }
                // adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
-                customAdapterFrag4.notifyDataSetChanged();
+                customAdapterAdd.notifyDataSetChanged();
 
             }
 
@@ -101,8 +87,8 @@ public class AddActivity extends AppCompatActivity {
         });
         */
 
-        customAdapterFrag4 = new CustomAdapterFrag4(arrayList, this);
-        recyclerView.setAdapter(customAdapterFrag4); // 리사이클러뷰에 어댑터 연결
+        customAdapterAdd = new CustomAdapterAdd(arrayList, this);
+        recyclerView.setAdapter(customAdapterAdd); // 리사이클러뷰에 어댑터 연결
 
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
@@ -113,7 +99,7 @@ public class AddActivity extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i3) {
 
-                customAdapterFrag4.getFilter().filter(charSequence);
+                customAdapterAdd.getFilter().filter(charSequence);
                 search = charSequence;
             }
 
@@ -133,6 +119,7 @@ public class AddActivity extends AppCompatActivity {
                 Intent intent = new Intent(AddActivity.this,WorkActivity.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 finish();
+
             }
         });
 

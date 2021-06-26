@@ -24,10 +24,15 @@ import java.util.ArrayList;
 
 public class Frag4 extends Fragment {
 
+    private CustomAdapterFrag4 customAdapterFrag4;
     private View view;
     RecyclerView recyclerView;
     ImageView empty_imageview;
     TextView no_data;
+    TextView name_text;
+    private ArrayList<UserAccount> arrayList;
+
+    private String name;
 
 
     @Nullable
@@ -38,8 +43,16 @@ public class Frag4 extends Fragment {
         empty_imageview = (ImageView) view.findViewById(R.id.empty_imageview);
         no_data = (TextView) view.findViewById(R.id.no_data);
 
-       // String s = getIntent().getStringExtra("name");
-       // recyclerView.setText(s);
+        customAdapterFrag4 = new CustomAdapterFrag4(arrayList, getActivity());
+        recyclerView.setAdapter(customAdapterFrag4); // 리사이클러뷰에 어댑터 연결
+
+/*
+        if (getArguments() != null)
+        {
+            name = getArguments().getString("name"); // 프래그먼트1에서 받아온 값 넣기
+            recyclerView.setText(name);
+        }*/
+
 
 
         FloatingActionButton btn_add = (FloatingActionButton) view.findViewById(R.id.btn_add);
