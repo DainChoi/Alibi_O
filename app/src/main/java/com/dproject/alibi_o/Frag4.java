@@ -30,11 +30,6 @@ public class Frag4 extends Fragment {
     TextView no_data;
 
 
-    MyDatabaseHelperFrag4 myDB;
-    ArrayList<String> work_num, work_title;
-    CustomAdapterFrag4 customAdapterfrag4;
-    ImageButton btn_delete2;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -42,6 +37,9 @@ public class Frag4 extends Fragment {
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         empty_imageview = (ImageView) view.findViewById(R.id.empty_imageview);
         no_data = (TextView) view.findViewById(R.id.no_data);
+
+       // String s = getIntent().getStringExtra("name");
+       // recyclerView.setText(s);
 
 
         FloatingActionButton btn_add = (FloatingActionButton) view.findViewById(R.id.btn_add);
@@ -54,16 +52,6 @@ public class Frag4 extends Fragment {
             }
         });
 
-        myDB = new MyDatabaseHelperFrag4(getActivity().getApplicationContext());
-        work_num = new ArrayList<>();
-        work_title = new ArrayList<>();
-
-        storeDataInArrays();
-
-        customAdapterfrag4 = new CustomAdapterFrag4(getActivity(),getActivity().getApplicationContext(),
-                work_num, work_title, btn_delete2);
-        recyclerView.setAdapter(customAdapterfrag4);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
 
 
@@ -71,20 +59,4 @@ public class Frag4 extends Fragment {
     }
 
 
-
-
-    void storeDataInArrays(){
-        Cursor cursor = myDB.readAllData();
-        if(cursor.getCount() == 0){
-            empty_imageview.setVisibility(View.VISIBLE);
-            no_data.setVisibility(View.VISIBLE);
-        }else{
-            while (cursor.moveToNext()){
-                work_num.add(cursor.getString(0));
-                work_title.add(cursor.getString(1));
-            }
-            empty_imageview.setVisibility(View.GONE);
-            no_data.setVisibility(View.GONE);
-        }
-    }
 }

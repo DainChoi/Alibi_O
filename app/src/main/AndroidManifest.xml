@@ -10,7 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity android:name=".AskActivity"></activity>
-        <activity android:name=".MemberActivity" />
         <activity android:name=".AddActivity" />
         <activity android:name=".UpdateActivity" />
         <activity android:name=".WorkaddActivity" />

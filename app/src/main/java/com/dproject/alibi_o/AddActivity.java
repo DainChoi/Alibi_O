@@ -4,40 +4,122 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SearchView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddActivity extends AppCompatActivity {
 
-    EditText title_input;
-    ImageButton btn_check;
+    private EditText searchBar;
+    private ImageButton btn_check, mSearchBtn;
+    private RecyclerView recyclerView;
+  //  private RecyclerView.Adapter adapter;
+    private CustomAdapterFrag4 customAdapterFrag4;
+    private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<UserAccount> arrayList;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
+
+    private CharSequence search="";
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
 
-        title_input = findViewById(R.id.title_input);
 
-        btn_check = findViewById(R.id.btn_check);
-        btn_check.setOnClickListener(new View.OnClickListener() {
+        searchBar = (EditText) findViewById(R.id.search_bar);
+        mSearchBtn = (ImageButton) findViewById(R.id.search_btn);
+        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true); // 리사이클러뷰 기존 성능 강화
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<>(); // UserAccount 객체를 담을 어레이리스트 (어댑터쪽으로)
+
+        database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
+
+        databaseReference = database.getReference("Alibi").child("UserAccount"); // DB 테이블 연결
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
+                arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
+                    UserAccount userAccount = snapshot.getValue(UserAccount.class); // UserAccount 객체에 데이터 담음
+                    arrayList.add(userAccount); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                }
+               // adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
+                customAdapterFrag4.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull  DatabaseError databaseError) {
+                // DB를 가져오던 중 에러 발생 시
+                Log.e("AddActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+
+
+        /* No Use -> 나중에 imageview로 chg.
+        mSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MyDatabaseHelperFrag4 myDB = new MyDatabaseHelperFrag4(AddActivity.this);
-                myDB.addWork(title_input.getText().toString().trim());
-                // ERROR: 추가한 후 MainActivity를 갔다 와야 추가 되어있음
-                /*
-                Intent intent = new Intent(WorkaddActivity.this, MainActivity.class);
-                startActivity(intent);
-                finish(); */
+
+            }
+        });
+        */
+
+        customAdapterFrag4 = new CustomAdapterFrag4(arrayList, this);
+        recyclerView.setAdapter(customAdapterFrag4); // 리사이클러뷰에 어댑터 연결
+
+        searchBar.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i3) {
+
+                customAdapterFrag4.getFilter().filter(charSequence);
+                search = charSequence;
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
             }
         });
 
@@ -53,26 +135,9 @@ public class AddActivity extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 
-/*
-    private View view;
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.activity_add, container, false);
 
-        ImageButton btn_back = (ImageButton) view.findViewById(R.id.btn_back);
-        btn_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // AddActivity로 이동
-                Intent intent = new Intent(getActivity(), Frag4.class);
-                startActivity(intent);
-            }
-        });
-
-        return view;
-    }*/
 }

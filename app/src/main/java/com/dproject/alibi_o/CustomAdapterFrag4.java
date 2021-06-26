@@ -1,114 +1,135 @@
 package com.dproject.alibi_o;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.os.Build;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.Filter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class CustomAdapterFrag4 extends RecyclerView.Adapter<CustomAdapterFrag4.MyViewHolder> {
+class CustomAdapterFrag4 extends RecyclerView.Adapter<CustomAdapterFrag4.CustomViewHolder> {
+
+    private ArrayList<UserAccount> arrayList;
+    private ArrayList<UserAccount> filteredUserDataList;
+   // private ArrayList<UserAccount> arrayListCopy;
 
     private Context context;
-    private Activity activity;
-    private ArrayList work_num, work_title;
-    private ImageButton btn_delete2;
-    String num;
 
-
-
-    CustomAdapterFrag4(Activity activity, Context context, ArrayList work_num, ArrayList work_title,
-                       ImageButton btn_delete2){
-        this.activity = activity;
+    public CustomAdapterFrag4(ArrayList<UserAccount> arrayList, Context context) {
+        this.arrayList = arrayList;
         this.context = context;
-        this.work_num = work_num;
-        this.work_title = work_title;
-        this.btn_delete2 = btn_delete2;
+       // this.arrayListCopy = new ArrayList<>();
+       // arrayListCopy.addAll(arrayList);
+        this.filteredUserDataList = arrayList;
     }
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.my_row_frag4, parent, false);
-
-        return new MyViewHolder(view);
+    public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_layout, parent, false);
+        CustomViewHolder holder = new CustomViewHolder(view);
+        return holder;
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        //holder.work_num_txt.setText(String.valueOf(work_num.get(position)));
-        holder.work_title_txt.setText(String.valueOf(work_title.get(position)));
-        //Recyclerview onClickListener
-        holder.btn_delete2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //work_num.remove(position);
-                //notifyItemRemoved(position);
-                //notifyItemRangeChanged(position, getItemCount());
+    public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
+        // EmailId, Name을 recyclerview로 나타나게
+        holder.email_text.setText(String.valueOf(arrayList.get(position).getEmailId()));
+        holder.name_text.setText(arrayList.get(position).getName());
 
-                //MyDatabaseHelperFrag4 myDB = new MyDatabaseHelperFrag4(context);
-                //myDB.deleteOneRow(num);
-                // ERROR: 삭제 안됨.
-                // Swipe to delete btn change.
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) { // 검색한 item 클릭 시 name 받아옴
+                Intent intent = new Intent(context,WorkActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("name", filteredUserDataList.get(position).getName());
+                context.startActivity(intent);
 
             }
         });
 
-
-        holder.mainLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, MemberActivity.class);
-                activity.startActivityForResult(intent, 1);
-
-            }
-        });
 
 
 
     }
-
 
     @Override
     public int getItemCount() {
-        return work_num.size();
+        // 상향 연산자
+       // return (arrayList != null ? arrayList.size() : 0);
+        //return arrayList.size();
+        return filteredUserDataList.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    public class CustomViewHolder extends RecyclerView.ViewHolder {
+        TextView email_text;
+        TextView name_text;
 
-        ImageView work_num_txt;
-        TextView  work_title_txt;
-        LinearLayout mainLayout;
-        ImageButton btn_delete2;
-
-        MyViewHolder(@NonNull View itemView) {
+        public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
-            work_num_txt = itemView.findViewById(R.id.work_num_txt);
-            work_title_txt = itemView.findViewById(R.id.work_title_txt);
-            btn_delete2 = itemView.findViewById(R.id.btn_delete2);
-            mainLayout = itemView.findViewById(R.id.mainLayout);
-            //Animate Recyclerview
-            Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
-            mainLayout.setAnimation(translate_anim);
+            this.email_text = itemView.findViewById(R.id.email_text);
+            this.name_text = itemView.findViewById(R.id.name_text);
+        }
+    }
+
+
+    public Filter getFilter(){
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+
+                String Key = charSequence.toString();
+                if (Key.isEmpty()){
+                    filteredUserDataList = arrayList;
+                }
+                else{
+                    ArrayList<UserAccount> listFiltered = new ArrayList<>();
+                    for(UserAccount row : arrayList){
+                        if(row.getEmailId().toLowerCase().contains(Key.toLowerCase())){
+                            listFiltered.add(row);
+                        }
+                    }
+                    filteredUserDataList = listFiltered;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filteredUserDataList;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+
+                filteredUserDataList = (ArrayList<UserAccount>)filterResults.values;
+                notifyDataSetChanged();
+
+            }
+        };
+
+    }
+    /*
+    public void filter(CharSequence charSequence) {
+        ArrayList<UserAccount> tempArrayList = new ArrayList<>();
+        if (!TextUtils.isEmpty(charSequence)) {
+            for (UserAccount row : arrayList) {
+                if (row.getEmailId().toLowerCase().contains(charSequence)) {
+                    tempArrayList.add(row);
+                }
+            }
+        } else {
+            arrayList.addAll(arrayListCopy);
         }
 
-    }
-
+        arrayList.clear();
+        arrayList.addAll(tempArrayList);
+        notifyDataSetChanged();
+        tempArrayList.clear();
+    }*/
 }
