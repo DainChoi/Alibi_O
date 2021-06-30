@@ -15,6 +15,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 class CustomAdapterAdd extends RecyclerView.Adapter<CustomAdapterAdd.CustomViewHolder> {
@@ -23,6 +26,8 @@ class CustomAdapterAdd extends RecyclerView.Adapter<CustomAdapterAdd.CustomViewH
     private ArrayList<UserAccount> filteredUserDataList;
 
     private Context context;
+    DatabaseReference databaseReference;
+
 
     public CustomAdapterAdd(ArrayList<UserAccount> arrayList, Context context) {
         this.arrayList = arrayList;
@@ -35,6 +40,7 @@ class CustomAdapterAdd extends RecyclerView.Adapter<CustomAdapterAdd.CustomViewH
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_layout, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Alibi").child("Member");
         return holder;
     }
 
@@ -47,63 +53,37 @@ class CustomAdapterAdd extends RecyclerView.Adapter<CustomAdapterAdd.CustomViewH
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { // 검색한 item 클릭 시 name 받아옴
-                confirmDialog();
-
-                /*
-                Intent intent = new Intent(context,WorkActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.putExtra("name", filteredUserDataList.get(position).getName());
-                context.startActivity(intent); // ERROR: frag1으로 이동됨.
-                */
-
-
-              //  Bundle bundle = new Bundle();
-              //  bundle.putString("name", userAccount.getName());
-              //  bundle.putString("name", arrayList.get(position).getName().getText().toString());
-               // CustomAdapterFrag4.setArguments(bundle);
-                /*
-                FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                Frag4 frag4 = new Frag4();//프래그먼트2 선언
-                frag4.setArguments(bundle);//번들을 프래그먼트2로 보낼 준비
-                transaction.replace(R.id.frame, frag4);
-                transaction.commit();
-
-                FragmentTransaction transection = getFragmentManager().beginTransaction();
-                SecondFragment mfragment=new SecondFragment();
-                transection.replace(R.id.main_fragment, mfragment);
-                transection.commit();
-                */
+            public void onClick(View view) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("직원 추가하기");
+                builder.setMessage("해당 직원을 추가하시겠습니까?"); // 나중에 직원app으로 push알림 보낸 후 수락 가능하도록
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(context,"추가되었습니다.", Toast.LENGTH_SHORT).show();
+                        String emailId = holder.email_text.getText().toString();
+                        String name = holder.name_text.getText().toString();
+                        Member member = new Member(emailId, name);
+                        databaseReference.push().setValue(member);
 
 
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
 
             }
         });
-
-
-
 
 
     }
 
-    private void confirmDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setTitle("직원 추가하기");
-        builder.setMessage("해당 직원을 추가하시겠습니까?"); // 나중에 직원app으로 push알림 보낸 후 수락 가능하도록
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                Toast.makeText(context,"추가되었습니다.", Toast.LENGTH_SHORT).show();
-            }
-        });
-        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
 
-            }
-        });
-        builder.show();
-    }
 
     @Override
     public int getItemCount() {
@@ -122,6 +102,7 @@ class CustomAdapterAdd extends RecyclerView.Adapter<CustomAdapterAdd.CustomViewH
             this.email_text = itemView.findViewById(R.id.email_text);
             this.name_text = itemView.findViewById(R.id.name_text);
         }
+
     }
 
 

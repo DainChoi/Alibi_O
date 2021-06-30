@@ -17,6 +17,7 @@
             android:layout_height="wrap_content"
             android:padding="12dp">
 
+            <!--
             <ImageView
                 android:id="@+id/work_num_txt"
                 android:layout_width="wrap_content"
@@ -26,18 +27,19 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
+                -->
 
             <TextView
-                android:id="@+id/work_title_txt"
+                android:id="@+id/name_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="20dp"
                 android:text="Title 1"
                 android:textColor="#22215B"
                 android:textSize="25sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/work_num_txt"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageButton

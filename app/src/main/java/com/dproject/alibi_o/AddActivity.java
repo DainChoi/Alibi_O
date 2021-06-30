@@ -27,7 +27,6 @@ public class AddActivity extends AppCompatActivity {
     private EditText searchBar;
     private ImageButton btn_check, mSearchBtn;
     private RecyclerView recyclerView;
-  //  private RecyclerView.Adapter adapter;
     private CustomAdapterAdd customAdapterAdd;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<UserAccount> arrayList;

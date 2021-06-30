@@ -15,11 +15,23 @@ public class Work {
         return title;
     }
 
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
     public String getWorkid() {
         return workid;
     }
 
+    public void setWorkid(String workid) {
+        this.workid = workid;
+    }
+
     public String getAddress() {
         return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }

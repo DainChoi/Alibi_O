@@ -14,11 +14,11 @@ import java.util.ArrayList;
 
 class CustomAdapterFrag4 extends RecyclerView.Adapter<CustomAdapterFrag4.CustomViewHolder> {
 
-    private ArrayList<UserAccount> arrayList;
+    private ArrayList<Member> arrayList;
 
     private Context context;
 
-    public CustomAdapterFrag4(ArrayList<UserAccount> arrayList, Context context) {
+    public CustomAdapterFrag4(ArrayList<Member> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }
@@ -33,12 +33,13 @@ class CustomAdapterFrag4 extends RecyclerView.Adapter<CustomAdapterFrag4.CustomV
 
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
-        // EmailId, Name을 recyclerview로 나타나게
+        //  Name을 recyclerview로 나타나게
+        // Error: 다른 fragment를 들어갔다 나와야 추가되어 있음
         holder.name_text.setText(arrayList.get(position).getName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { // 검색한 item 클릭 시 name 받아옴
+            public void onClick(View view) {
 
 
 

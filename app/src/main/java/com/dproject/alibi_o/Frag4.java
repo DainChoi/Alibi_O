@@ -4,6 +4,9 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -30,7 +38,10 @@ public class Frag4 extends Fragment {
     ImageView empty_imageview;
     TextView no_data;
     TextView name_text;
-    private ArrayList<UserAccount> arrayList;
+    private ArrayList<Member> arrayList;
+    private RecyclerView.LayoutManager layoutManager;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     private String name;
 
@@ -46,12 +57,47 @@ public class Frag4 extends Fragment {
         customAdapterFrag4 = new CustomAdapterFrag4(arrayList, getActivity());
         recyclerView.setAdapter(customAdapterFrag4); // 리사이클러뷰에 어댑터 연결
 
-/*
-        if (getArguments() != null)
-        {
-            name = getArguments().getString("name"); // 프래그먼트1에서 받아온 값 넣기
-            recyclerView.setText(name);
-        }*/
+        layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<>(); // UserAccount 객체를 담을 어레이리스트 (어댑터쪽으로)
+
+        database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
+
+        databaseReference = database.getReference("Alibi").child("Member"); // DB 테이블 연결
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
+                arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
+                    Member member = snapshot.getValue(Member.class); // UserAccount 객체에 데이터 담음
+                    arrayList.add(member); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                }
+                // adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
+                customAdapterFrag4.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // DB를 가져오던 중 에러 발생 시
+                Log.e("Frag4", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+
+
+        /* No Use -> 나중에 imageview로 chg.
+        mSearchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        */
+
+        customAdapterFrag4 = new CustomAdapterFrag4(arrayList, getActivity().getApplicationContext());
+        recyclerView.setAdapter(customAdapterFrag4); // 리사이클러뷰에 어댑터 연결
+
 
 
 
