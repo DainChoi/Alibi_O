@@ -7,9 +7,6 @@ import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -17,10 +14,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.google.firebase.database.DatabaseReference;
 
 import java.util.ArrayList;
 
@@ -29,10 +23,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Context context;
     private Activity activity;
     private ImageButton btn_modify2;
-    private ArrayList<MyWork> arrayList;
+    private ArrayList<OwnerWork> arrayList;
 
 
-    public CustomAdapter(ArrayList<MyWork> arrayList, Context context) {
+    public CustomAdapter(ArrayList<OwnerWork> arrayList, Context context) {
         this.arrayList = arrayList;
         this.context = context;
     }

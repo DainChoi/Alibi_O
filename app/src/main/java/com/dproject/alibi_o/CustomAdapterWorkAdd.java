@@ -6,9 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,8 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -43,7 +38,7 @@ class CustomAdapterWorkAdd extends RecyclerView.Adapter<CustomAdapterWorkAdd.Cus
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_layout_work_add, parent, false);
         CustomViewHolder holder = new CustomViewHolder(view);
-        databaseReference = FirebaseDatabase.getInstance().getReference("Alibi").child("MyWork");
+        databaseReference = FirebaseDatabase.getInstance().getReference("Alibi").child("OwnerWork");
         return holder;
     }
 
@@ -68,7 +63,7 @@ class CustomAdapterWorkAdd extends RecyclerView.Adapter<CustomAdapterWorkAdd.Cus
                         String title = holder.work_title_txt.getText().toString();
                         String address = holder.work_address_txt.getText().toString();
                         String workid = holder.work_id_txt.getText().toString();
-                        MyWork mywork = new MyWork(title, workid, address);
+                        OwnerWork mywork = new OwnerWork(title, workid, address);
                         databaseReference.push().setValue(mywork);
 
 
@@ -125,7 +120,7 @@ class CustomAdapterWorkAdd extends RecyclerView.Adapter<CustomAdapterWorkAdd.Cus
                 else{
                     ArrayList<Work> listFiltered = new ArrayList<>();
                     for(Work row : arrayList){
-                        if(row.getTitle().toLowerCase().contains(Key.toLowerCase())){
+                        if(row.getWorkid().toLowerCase().contains(Key.toLowerCase())){
                             listFiltered.add(row);
                         }
                     }

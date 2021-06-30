@@ -12,7 +12,6 @@
         <activity android:name=".WorkAddActivity"></activity>
         <activity android:name=".AskActivity" />
         <activity android:name=".AddActivity" />
-        <activity android:name=".UpdateActivity" />
         <activity android:name=".WorkRegisterActivity" />
         <activity android:name=".ModifyActivity" />
         <activity android:name=".WorkActivity" />
