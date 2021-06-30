@@ -67,6 +67,7 @@ class CustomAdapterAdd extends RecyclerView.Adapter<CustomAdapterAdd.CustomViewH
                         databaseReference.push().setValue(member);
 
 
+
                     }
                 });
                 builder.setNegativeButton("No", new DialogInterface.OnClickListener() {

@@ -36,7 +36,8 @@ public class WorkRegisterActivity extends AppCompatActivity {
                 String workid = id_input.getText().toString();
                 String address = address_input.getText().toString();
                 Work work = new Work(title, workid, address);
-                databaseReference.push().setValue(work);
+               // databaseReference.push().setValue(work);
+                databaseReference.child(work.getWorkid()).setValue(work);
                 Toast.makeText(WorkRegisterActivity.this, "매장이 등록되었습니다!", Toast.LENGTH_SHORT).show();
 
               //  Intent intent = new Intent(WorkaddActivity.this, MainActivity.class);

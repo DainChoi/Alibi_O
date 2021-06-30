@@ -2,6 +2,7 @@ package com.dproject.alibi_o;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
 import android.view.LayoutInflater;
@@ -11,12 +12,21 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
@@ -24,6 +34,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     private Activity activity;
     private ImageButton btn_modify2;
     private ArrayList<OwnerWork> arrayList;
+    DatabaseReference databaseReference;
 
 
     public CustomAdapter(ArrayList<OwnerWork> arrayList, Context context) {
@@ -49,28 +60,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.my_row, parent, false);
+        databaseReference = FirebaseDatabase.getInstance().getReference("Alibi").child("OwnerWork");
         return new MyViewHolder(view);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
-        //holder.work_num_txt.setText(String.valueOf(work_num.get(position)));
-      //  holder.work_title_txt.setText(String.valueOf(work_title.get(position)));
-      //  holder.work_id_txt.setText(String.valueOf(work_id.get(position)));
-      //  holder.work_address_txt.setText(String.valueOf(work_address.get(position)));
-        //Recyclerview onClickListener
-      /*  holder.btn_modify2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, UpdateActivity.class);
-                intent.putExtra("num", String.valueOf(work_num.get(position)));
-                intent.putExtra("title", String.valueOf(work_title.get(position)));
-                intent.putExtra("id", String.valueOf(work_id.get(position)));
-                intent.putExtra("address", String.valueOf(work_address.get(position)));
-                activity.startActivityForResult(intent, 1);
-            }
-        });*/
+
+
         holder.work_title_txt.setText(arrayList.get(position).getTitle());
         holder.work_id_txt.setText(arrayList.get(position).getWorkid());
         holder.work_address_txt.setText(arrayList.get(position).getAddress());
@@ -86,10 +84,66 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             }
         });
 
+        holder.mainLayout.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                builder.setTitle("매장 삭제하기");
+                builder.setMessage("해당 매장을 삭제하시겠습니까?");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Toast.makeText(context, "삭제되었습니다.", Toast.LENGTH_SHORT).show();
+                        databaseReference.removeValue(); // 데이터베이스에서 항목 제거 //Error: 전부 삭제
+                      //  databaseReference.child(OwnerWork.workid).removeValue();
+                        deleteItem(position); // 리사이클러뷰 다시 정렬/*
+
+                      /*
+                        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.getValue() != null) {
+                                    for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                        if (Objects.requireNonNull(snapshot.getRef().getKey()).equals(OwnerWork.get(position))) {
+                                            databaseReference.child(OwnerWork.get(position)).removeValue();
+                                        }
+                                    }
+                                }
+
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
+                        */
+
+
+                    }
+                });
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.show();
+
+                return true;
+            }
+        });
 
 
 
 
+
+    }
+
+    private void deleteItem(int position) {
+        arrayList.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeChanged(position, arrayList.size());
     }
 
     @Override

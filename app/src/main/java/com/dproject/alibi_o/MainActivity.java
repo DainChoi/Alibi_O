@@ -162,7 +162,7 @@ public class MainActivity extends AppCompatActivity {
     }
     */
 
-
+/*
     void confirmDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Delete All?");
@@ -186,4 +186,6 @@ public class MainActivity extends AppCompatActivity {
         });
         builder.create().show();
     }
+
+ */
 }
