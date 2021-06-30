@@ -1,17 +1,17 @@
 package com.dproject.alibi_o;
 
-public class Work {
+public class MyWork {
     private String title;     // 매장 이름
     private String workid;     // 매장 ID
     private String address;    // 매장 주소
 
-    public Work(String title, String workid, String address) {
+    public MyWork(String title, String workid, String address) {
         this.title = title;
         this.workid = workid;
         this.address = address;
     }
 
-    public Work(){}
+    public MyWork(){}
 
     public String getTitle() {
         return title;

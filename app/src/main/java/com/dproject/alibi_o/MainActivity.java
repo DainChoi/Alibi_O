@@ -1,5 +1,6 @@
 package com.dproject.alibi_o;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,37 +10,35 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
-import java.util.ArrayList;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    private CustomAdapter customAdapter;
     RecyclerView recyclerView;
     ImageButton btn_workadd;
     ImageButton btn_setting;
     ImageView empty_imageview;
     TextView no_data;
+    private ArrayList<MyWork> arrayList;
+    private RecyclerView.LayoutManager layoutManager;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
-    MyDatabaseHelper myDB;
-    ArrayList<String> work_num, work_title, work_id, work_address;
-    CustomAdapter customAdapter;
-    ImageButton btn_modify2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,13 +51,57 @@ public class MainActivity extends AppCompatActivity {
         empty_imageview = findViewById(R.id.empty_imageview);
         no_data = findViewById(R.id.no_data);
 
+        customAdapter = new CustomAdapter(arrayList, MainActivity.this);
+        recyclerView.setAdapter(customAdapter); // 리사이클러뷰에 어댑터 연결
+
+        layoutManager = new LinearLayoutManager(MainActivity.this);
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<>(); // UserAccount 객체를 담을 어레이리스트 (어댑터쪽으로)
+
+        database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
+
+        databaseReference = database.getReference("Alibi").child("MyWork"); // DB 테이블 연결
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
+                arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
+                    MyWork mywork = snapshot.getValue(MyWork.class); // UserAccount 객체에 데이터 담음
+                    arrayList.add(mywork); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                }
+                // adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
+                customAdapter.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // DB를 가져오던 중 에러 발생 시
+                Log.e("Frag4", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+
+
+        /* No Use -> 나중에 imageview로 chg.
+        mSearchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        */
+
+        customAdapter = new CustomAdapter(arrayList, MainActivity.this);
+        recyclerView.setAdapter(customAdapter); // 리사이클러뷰에 어댑터 연결
+
 
         ImageButton btn_workadd = findViewById(R.id.btn_workadd);
         btn_workadd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(MainActivity.this, WorkaddActivity.class);
+                Intent intent = new Intent(MainActivity.this, WorkRegisterActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -78,18 +121,18 @@ public class MainActivity extends AppCompatActivity {
         // 탈퇴 처리
         // mFirebaseAuth.getCurrentUser().delete();
 
-        myDB = new MyDatabaseHelper(MainActivity.this);
-        work_num = new ArrayList<>();
-        work_title = new ArrayList<>();
-        work_id = new ArrayList<>();
-        work_address = new ArrayList<>();
 
-        storeDataInArrays();
 
-        customAdapter = new CustomAdapter(MainActivity.this,this, work_num, work_title, work_id,
-                work_address, btn_modify2);
-        recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
+        FloatingActionButton btn_add = findViewById(R.id.btn_add);
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // WorkaddActivity로 이동 / 수정 new act.
+                Intent intent = new Intent(MainActivity.this, WorkAddActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
 
     }
@@ -102,22 +145,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    void storeDataInArrays(){
-        Cursor cursor = myDB.readAllData();
-        if(cursor.getCount() == 0){
-            empty_imageview.setVisibility(View.VISIBLE);
-            no_data.setVisibility(View.VISIBLE);
-        }else{
-            while (cursor.moveToNext()){
-                work_num.add(cursor.getString(0));
-                work_title.add(cursor.getString(1));
-                work_id.add(cursor.getString(2));
-                work_address.add(cursor.getString(3));
-            }
-            empty_imageview.setVisibility(View.GONE);
-            no_data.setVisibility(View.GONE);
-        }
-    }
 
     /*
     @Override

@@ -20,17 +20,23 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DatabaseReference;
+
 import java.util.ArrayList;
 
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHolder> {
 
     private Context context;
     private Activity activity;
-    private ArrayList work_num, work_title, work_id, work_address;
     private ImageButton btn_modify2;
+    private ArrayList<MyWork> arrayList;
 
 
-
+    public CustomAdapter(ArrayList<MyWork> arrayList, Context context) {
+        this.arrayList = arrayList;
+        this.context = context;
+    }
+/*
     CustomAdapter(Activity activity, Context context, ArrayList work_num, ArrayList work_title, ArrayList work_id,
                   ArrayList work_address, ImageButton btn_modify2){
         this.activity = activity;
@@ -41,6 +47,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
         this.work_address = work_address;
         this.btn_modify2 = btn_modify2;
     }
+
+ */
 
     @NonNull
     @Override
@@ -54,11 +62,11 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
     @Override
     public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
         //holder.work_num_txt.setText(String.valueOf(work_num.get(position)));
-        holder.work_title_txt.setText(String.valueOf(work_title.get(position)));
-        holder.work_id_txt.setText(String.valueOf(work_id.get(position)));
-        holder.work_address_txt.setText(String.valueOf(work_address.get(position)));
+      //  holder.work_title_txt.setText(String.valueOf(work_title.get(position)));
+      //  holder.work_id_txt.setText(String.valueOf(work_id.get(position)));
+      //  holder.work_address_txt.setText(String.valueOf(work_address.get(position)));
         //Recyclerview onClickListener
-        holder.btn_modify2.setOnClickListener(new View.OnClickListener() {
+      /*  holder.btn_modify2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, UpdateActivity.class);
@@ -68,16 +76,23 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
                 intent.putExtra("address", String.valueOf(work_address.get(position)));
                 activity.startActivityForResult(intent, 1);
             }
-        });
+        });*/
+        holder.work_title_txt.setText(arrayList.get(position).getTitle());
+        holder.work_id_txt.setText(arrayList.get(position).getWorkid());
+        holder.work_address_txt.setText(arrayList.get(position).getAddress());
 
         holder.mainLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, WorkActivity.class);
-                activity.startActivityForResult(intent, 1);
+                //Intent intent = new Intent(context, WorkActivity.class);
+                //activity.startActivityForResult(intent, 1);
+                context.startActivity(new Intent(context, WorkActivity.class));
+
 
             }
         });
+
+
 
 
 
@@ -85,7 +100,7 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return work_num.size();
+        return arrayList.size();
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
@@ -104,8 +119,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.MyViewHold
             btn_modify2 = itemView.findViewById(R.id.btn_modify2);
             mainLayout = itemView.findViewById(R.id.mainLayout);
             //Animate Recyclerview
-            Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
-            mainLayout.setAnimation(translate_anim);
+            //Animation translate_anim = AnimationUtils.loadAnimation(context, R.anim.translate_anim);
+            //mainLayout.setAnimation(translate_anim);
+
         }
 
     }
