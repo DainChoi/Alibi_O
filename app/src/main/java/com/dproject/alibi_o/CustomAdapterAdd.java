@@ -15,6 +15,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -65,8 +67,6 @@ class CustomAdapterAdd extends RecyclerView.Adapter<CustomAdapterAdd.CustomViewH
                         String name = holder.name_text.getText().toString();
                         Member member = new Member(emailId, name);
                         databaseReference.push().setValue(member);
-
-
 
                     }
                 });
