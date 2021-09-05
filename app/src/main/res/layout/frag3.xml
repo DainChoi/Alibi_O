@@ -257,7 +257,7 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:text="09:00"
+            android:text=""
             android:inputType="time"
             android:textAlignment="center"
             android:textColor="#4C4B4B"
@@ -279,7 +279,29 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:text="09:00"
+            android:text="09:30"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
             android:inputType="time"
             android:textAlignment="center"
             android:textColor="#4C4B4B"
@@ -290,29 +312,7 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:text="09:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="09:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="09:00"
+            android:text=""
             android:inputType="time"
             android:textAlignment="center"
             android:textColor="#4C4B4B"
@@ -341,6 +341,486 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
+            android:text="16:00"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="15:00"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="15:30"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:text="김용석"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:text="10:00"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="13:00"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="20:00"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="20:00"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:text="전현욱"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="08:00"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text="09:00"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="16:00"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="16:00"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:text="최다인"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
             android:text="09:00"
             android:inputType="time"
             android:textAlignment="center"
@@ -348,6 +828,17 @@
             android:textSize="12sp"
             android:background="@null"/>
 
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
 
         <EditText
             android:layout_width="0dp"
@@ -373,9 +864,20 @@
 
         <EditText
             android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:text="09:00"
+            android:text=""
             android:inputType="time"
             android:textAlignment="center"
             android:textColor="#4C4B4B"
@@ -386,7 +888,48 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:text="09:00"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text="16:00"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
             android:inputType="time"
             android:textAlignment="center"
             android:textColor="#4C4B4B"
@@ -397,7 +940,7 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:text="09:00"
+            android:text="15:00"
             android:inputType="time"
             android:textAlignment="center"
             android:textColor="#4C4B4B"
@@ -408,7 +951,40 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:text="09:00"
+            android:text="15:00"
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
+            android:inputType="time"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp"
+            android:background="@null"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:text=""
             android:inputType="time"
             android:textAlignment="center"
             android:textColor="#4C4B4B"
