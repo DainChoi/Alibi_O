@@ -1,294 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
+
+
+    <com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar
+        android:id="@+id/calendarView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:buttonLeft_drawableTintColor="@android:color/white"
+        app:buttonRight_drawableTintColor="@android:color/white"
+        app:expandIconColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:primaryColor="#B360E8"
+        app:selectedItem_background="@drawable/circle_white_solid_background"
+        app:selectedItem_textColor="#A65BD5"
+        app:textColor="@android:color/white"
+        app:todayItem_background="@drawable/circle_white_stroke_background"
+        app:todayItem_textColor="@android:color/white"></com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar>
+
+
+    <TextView
+        android:id="@+id/name1"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:text="김용석"
+        android:textAlignment="center"
+        android:textColor="#4C4B4B"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/name1">
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text="09:00"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text="09:00"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text="09:30"
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="#4C4B4B"
+            android:textSize="12sp" />
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="20dp"
-        android:layout_marginTop="20dp">
+        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2">
 
-        <Button
+
+        <EditText
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_weight="1"
-            android:text="@string/back"
-            android:textColor="#3F51B5"
             android:background="@null"
-            android:textStyle="bold"
-            android:onClick="previousWeekAction"
-            android:textSize="20sp"/>
-
-        <TextView
-            android:id="@+id/monthYearTV"
-            android:layout_width="0dp"
-            android:layout_weight="2"
-            android:layout_height="wrap_content"
-            android:text="Feb 2021"
-            android:textSize="20sp"
-            android:textAlignment="center"
-            android:textColor="#000000"/>
-
-        <Button
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/forward"
-            android:textColor="#3F51B5"
-            android:background="@null"
-            android:textStyle="bold"
-            android:onClick="nextWeekAction"
-            android:textSize="20sp"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=""
-            android:textColor="#4C4B4B"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="SUN"
-            android:textColor="#4C4B4B"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="MON"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="TUE"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="WED"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="THU"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="FRI"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="SAT"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="16sp"/>
-
-
-
-    </LinearLayout>
-
-<!--
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/calendarRecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-  -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="14"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="15"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="16"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="17"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="18"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="19"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="20"
-            android:textColor="#FF4C4B4B"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text="정강은"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text="09:00"
             android:inputType="time"
+            android:text="16:00"
             android:textAlignment="center"
             android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
+            android:textSize="12sp" />
 
 
         <EditText
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="09:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="09:30"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
             android:inputType="time"
@@ -301,164 +162,27 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:text=""
+            android:background="@null"
             android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="16:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
             android:text="15:00"
-            android:inputType="time"
             android:textAlignment="center"
             android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
+            android:textSize="12sp" />
 
         <EditText
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
+            android:background="@null"
+            android:inputType="time"
             android:text="15:30"
-            android:inputType="time"
             android:textAlignment="center"
             android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
+            android:textSize="12sp" />
 
         <EditText
             android:layout_width="0dp"
             android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text="김용석"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text="10:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="13:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@null"
             android:inputType="time"
@@ -471,17 +195,6 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:background="@null"
             android:inputType="time"
             android:text=""
@@ -493,379 +206,6 @@
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="20:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="20:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text="전현욱"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="08:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@null"
-            android:inputType="time"
-            android:text="09:00"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="16:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="16:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text="최다인"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text="09:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="09:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="09:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
             android:background="@null"
             android:inputType="time"
             android:text=""
@@ -873,128 +213,11 @@
             android:textColor="#4C4B4B"
             android:textSize="12sp" />
 
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="20dp"
-            android:layout_weight="1"
-            android:text=""
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="15sp"
-            android:textStyle="bold" />
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="16:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="15:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text="15:00"
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
-        <EditText
-            android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1"
-            android:text=""
-            android:inputType="time"
-            android:textAlignment="center"
-            android:textColor="#4C4B4B"
-            android:textSize="12sp"
-            android:background="@null"/>
-
 
     </LinearLayout>
 
 
 
 
-</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
