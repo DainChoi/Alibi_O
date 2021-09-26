@@ -2,7 +2,6 @@ package com.dproject.alibi_o;
 
 public class Time {
 
-    private String name;
     private String sun_in;
     private String mon_in;
     private String tue_in;
@@ -20,12 +19,12 @@ public class Time {
     private String sat_out;
 
 
-    public Time(String name, String sun_in, String mon_in, String tue_in,
+    public Time(String sun_in, String mon_in, String tue_in,
                 String wed_in, String thu_in, String fri_in, String sat_in,
                 String sun_out, String mon_out, String tue_out,
                 String wed_out, String thu_out, String fri_out, String sat_out) {
 
-        this.name = name;
+
         this.sun_in = sun_in;
         this.mon_in = mon_in;
         this.tue_in = tue_in;
@@ -46,13 +45,6 @@ public class Time {
     }
 
     public Time(){}
-
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
 
     public String getSun_in() {
         return sun_in;

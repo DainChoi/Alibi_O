@@ -66,7 +66,8 @@ class CustomAdapterAdd extends RecyclerView.Adapter<CustomAdapterAdd.CustomViewH
                         String emailId = holder.email_text.getText().toString();
                         String name = holder.name_text.getText().toString();
                         Member member = new Member(emailId, name);
-                        databaseReference.push().setValue(member);
+                       // databaseReference.push().setValue(member);
+                        databaseReference.child(member.getName()).setValue(member);
 
                     }
                 });

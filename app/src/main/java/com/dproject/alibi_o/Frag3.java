@@ -7,71 +7,102 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.shrikanthravi.collapsiblecalendarview.data.Day;
 import com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar;
+
+import java.util.ArrayList;
 
 public class Frag3 extends Fragment {
 
     private View view;
-    EditText name_input;
-    EditText sun_in_input, mon_in_input, tue_in_input, wed_in_input, thu_in_input, fri_in_input, sat_in_input;
-    EditText sun_out_input, mon_out_input, tue_out_input, wed_out_input, thu_out_input, fri_out_input, sat_out_input;
+
     ImageButton btn_check;
-    DatabaseReference databaseReference;
+    DatabaseReference databaseReference_time;
+
+    private CustomAdapterFrag3 customAdapterFrag3;
+    RecyclerView recyclerView;
+    TextView name_text;
+    private ArrayList<Member> arrayList;
+    private ArrayList<Time> arrayList2;
+    private RecyclerView.LayoutManager layoutManager;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.frag3, container, false);
 
-        name_input = view.findViewById(R.id.name_input);
-        sun_in_input = view.findViewById(R.id.sun_in);
-        mon_in_input = view.findViewById(R.id.mon_in);
-        tue_in_input = view.findViewById(R.id.tue_in);
-        wed_in_input = view.findViewById(R.id.wed_in);
-        thu_in_input = view.findViewById(R.id.thu_in);
-        fri_in_input = view.findViewById(R.id.fri_in);
-        sat_in_input = view.findViewById(R.id.sat_in);
+        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        sun_out_input = view.findViewById(R.id.sun_out);
-        mon_out_input = view.findViewById(R.id.mon_out);
-        tue_out_input = view.findViewById(R.id.tue_out);
-        wed_out_input = view.findViewById(R.id.wed_out);
-        thu_out_input = view.findViewById(R.id.thu_out);
-        fri_out_input = view.findViewById(R.id.fri_out);
-        sat_out_input = view.findViewById(R.id.sat_out);
+        customAdapterFrag3 = new CustomAdapterFrag3(arrayList, getActivity());
+        recyclerView.setAdapter(customAdapterFrag3); // 리사이클러뷰에 어댑터 연결
+
+        layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        arrayList = new ArrayList<>(); // UserAccount 객체를 담을 어레이리스트 (어댑터쪽으로)
+
+        database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
+
+        databaseReference = database.getReference("Alibi").child("Member"); // DB 테이블 연결
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
+                arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
+                    Member member = snapshot.getValue(Member.class); // UserAccount 객체에 데이터 담음
+                    arrayList.add(member); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                }
+
+                // adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
+                customAdapterFrag3.notifyDataSetChanged();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // DB를 가져오던 중 에러 발생 시
+                Log.e("Frag3", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
 
 
-        databaseReference = FirebaseDatabase.getInstance().getReference("Alibi").child("time");
+        /* No Use -> 나중에 imageview로 chg.
+        mSearchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        */
+
+        customAdapterFrag3 = new CustomAdapterFrag3(arrayList, getActivity().getApplicationContext());
+        recyclerView.setAdapter(customAdapterFrag3); // 리사이클러뷰에 어댑터 연결
+
+
+        /*
+        databaseReference_time = FirebaseDatabase.getInstance().getReference("Alibi").child("time");
 
         btn_check = view.findViewById(R.id.btn_check);
         btn_check.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String name = name_input.getText().toString();
-                String sun_in = sun_in_input.getText().toString();
-                String mon_in = mon_in_input.getText().toString();
-                String tue_in = tue_in_input.getText().toString();
-                String wed_in = wed_in_input.getText().toString();
-                String thu_in = thu_in_input.getText().toString();
-                String fri_in = fri_in_input.getText().toString();
-                String sat_in = sat_in_input.getText().toString();
-
-                String sun_out = sun_out_input.getText().toString();
-                String mon_out = mon_out_input.getText().toString();
-                String tue_out = tue_out_input.getText().toString();
-                String wed_out = wed_out_input.getText().toString();
-                String thu_out = thu_out_input.getText().toString();
-                String fri_out = fri_out_input.getText().toString();
-                String sat_out = sat_out_input.getText().toString();
 
                 Time time = new Time(name, sun_in, mon_in, tue_in, wed_in, thu_in, fri_in, sat_in,
                         sun_out, mon_out, tue_out, wed_out, thu_out, fri_out, sat_out);
@@ -85,7 +116,9 @@ public class Frag3 extends Fragment {
             }
         });
 
+         */
 
+        // 캘린더
         final CollapsibleCalendar collapsibleCalendar = view.findViewById(R.id.calendarView);
         collapsibleCalendar.setCalendarListener(new CollapsibleCalendar.CalendarListener() {
             @Override
