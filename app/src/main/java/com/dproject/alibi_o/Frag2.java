@@ -8,20 +8,22 @@ import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
-
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import org.w3c.dom.Text;
-
-import java.text.BreakIterator;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class Frag2 extends Fragment {
 
     private View view;
+    private FirebaseDatabase database;
+    private DatabaseReference databaseReference;
 
 
     @Nullable
@@ -30,7 +32,7 @@ public class Frag2 extends Fragment {
         view = inflater.inflate(R.layout.frag2, container, false);
 
         ImageButton btn_notify = (ImageButton) view.findViewById(R.id.btn_notify);
-        
+
         btn_notify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +54,34 @@ public class Frag2 extends Fragment {
 
             }
         });
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Alibi").child("TimeIn").child("01:30").child("time_in").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                TextView TimeIn = (TextView) view.findViewById(R.id.S_time1);
+                TimeIn.setText(value);
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+
+        databaseReference.child("Alibi").child("TimeOut").child("01:31").child("time_out").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                TextView TimeOut = (TextView) view.findViewById(R.id.E_time1);
+                TimeOut.setText(value);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+
         return view;
     }
 }

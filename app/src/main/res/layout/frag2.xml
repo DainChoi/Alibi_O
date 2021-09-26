@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="430dp"
-            android:text="S_Time" />
+             />
 
         <TextView
             android:id="@+id/E_time1"
@@ -46,7 +46,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="450dp"
-            android:text="E_Time"
             android:textColor="#B2B2B2" />
 
         <TextView
@@ -55,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="515dp"
-            android:text="S_Time" />
+             />
 
         <TextView
             android:id="@+id/E_time2"
@@ -63,7 +62,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="535dp"
-            android:text="E_Time"
             android:textColor="#B2B2B2" />
 
         <TextView
@@ -72,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="600dp"
-            android:text="S_Time" />
+             />
 
         <TextView
             android:id="@+id/E_time3"
@@ -80,7 +78,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginTop="625dp"
-            android:text="E_Time"
             android:textColor="#B2B2B2" />
 
         <TextView
@@ -88,8 +85,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="150dp"
-            android:layout_marginTop="430dp"
-            android:text="TextView" />
+            android:layout_marginTop="430dp" />
+
+
     </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
