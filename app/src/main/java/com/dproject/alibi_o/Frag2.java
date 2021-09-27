@@ -82,6 +82,59 @@ public class Frag2 extends Fragment {
             }
         });
 
+        databaseReference.child("Alibi").child("Member").child("가나다").child("name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                TextView TimeOut = (TextView) view.findViewById(R.id.name_1);
+                TimeOut.setText(value);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+
+        databaseReference.child("Alibi").child("TimeIn").child("06:05").child("time_in").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                TextView TimeIn = (TextView) view.findViewById(R.id.S_time2);
+                TimeIn.setText(value);
+
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+
+        databaseReference.child("Alibi").child("TimeOut").child("08:09").child("time_out").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                TextView TimeOut = (TextView) view.findViewById(R.id.E_time2);
+                TimeOut.setText(value);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+
+        databaseReference.child("Alibi").child("Member").child("테스트").child("name").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String value = dataSnapshot.getValue(String.class);
+                TextView TimeOut = (TextView) view.findViewById(R.id.name_2);
+                TimeOut.setText(value);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                //Log.e("MainActivity", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+
         return view;
     }
 }
