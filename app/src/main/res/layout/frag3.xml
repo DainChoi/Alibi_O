@@ -11,30 +11,45 @@
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:buttonLeft_drawableTintColor="@android:color/white"
-        app:buttonRight_drawableTintColor="@android:color/white"
-        app:expandIconColor="@android:color/white"
+        app:buttonLeft_drawableTintColor="@android:color/black"
+        app:buttonRight_drawableTintColor="@android:color/black"
+        app:expandIconColor="@android:color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:primaryColor="#B360E8"
-        app:selectedItem_background="@drawable/circle_white_solid_background"
-        app:selectedItem_textColor="#A65BD5"
-        app:textColor="@android:color/white"
-        app:todayItem_background="@drawable/circle_white_stroke_background"
-        app:todayItem_textColor="@android:color/white">
+        app:primaryColor="#FFFFFF"
+        app:selectedItem_background="@drawable/circle_black_solid_background"
+        app:selectedItem_textColor="#FFFFFF"
+        app:textColor="@android:color/black"
+        app:todayItem_background="@drawable/circle_black_stroke_background"
+        app:todayItem_textColor="@android:color/black">
 
     </com.shrikanthravi.collapsiblecalendarview.widget.CollapsibleCalendar>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/calendarView" />
+        app:layout_constraintTop_toBottomOf="@+id/calendarView" >
+    </androidx.recyclerview.widget.RecyclerView>
 
-    
+    <!--
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginBottom="40dp"
+        android:clickable="true"
+        app:elevation="0dp"
+        app:borderWidth="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_baseline_add_24"
+        android:backgroundTint="#1A4DC591" /> -->
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

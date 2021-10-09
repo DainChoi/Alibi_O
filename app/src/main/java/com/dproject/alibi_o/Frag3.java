@@ -42,6 +42,7 @@ public class Frag3 extends Fragment {
     private RecyclerView.LayoutManager layoutManager;
     private FirebaseDatabase database;
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference2;
 
     @Nullable
     @Override
@@ -50,28 +51,43 @@ public class Frag3 extends Fragment {
 
         recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
 
-        customAdapterFrag3 = new CustomAdapterFrag3(arrayList, getActivity());
-        recyclerView.setAdapter(customAdapterFrag3); // 리사이클러뷰에 어댑터 연결
+        //  customAdapterFrag3 = new CustomAdapterFrag3(arrayList, arrayList2, getActivity());
+        //  recyclerView.setAdapter(customAdapterFrag3); // 리사이클러뷰에 어댑터 연결
 
         layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         recyclerView.setLayoutManager(layoutManager);
         arrayList = new ArrayList<>(); // UserAccount 객체를 담을 어레이리스트 (어댑터쪽으로)
+        arrayList2 = new ArrayList<>();
 
         database = FirebaseDatabase.getInstance(); // 파이어베이스 데이터베이스 연동
 
+
         databaseReference = database.getReference("Alibi").child("Member"); // DB 테이블 연결
+       // databaseReference2 = database.getReference("Alibi").child("Member").child("Time"); // DB 테이블 연결
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
                 arrayList.clear(); // 기존 배열리스트가 존재하지 않게 초기화
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
-                    Member member = snapshot.getValue(Member.class); // UserAccount 객체에 데이터 담음
+                    Member member = snapshot.getValue(Member.class); // Member 객체에 데이터 담음
                     arrayList.add(member); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+
+                    Time time = snapshot.getValue(Time.class); // Time 객체에 데이터 담음
+                    arrayList2.add(time); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비;
+
+                    /* error
+                    for (DataSnapshot dSnapshot : dataSnapshot.child("Time").getChildren()) {
+                        Time time = dSnapshot.getValue(Time.class); // Time 객체에 데이터 담음
+                        arrayList2.add(time); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비;
+
+                    }
+
+                     */
+
                 }
 
-                // adapter.notifyDataSetChanged(); // 리스트 저장 및 새로고침
-                customAdapterFrag3.notifyDataSetChanged();
+                customAdapterFrag3.notifyDataSetChanged(); // 리스트 저장 및 새로고침
 
             }
 
@@ -83,6 +99,63 @@ public class Frag3 extends Fragment {
         });
 
 
+
+
+
+
+        /*
+        databaseReference = database.getReference("Alibi").child("Member");
+        ValueEventListener eventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Member member = ds.getValue(Member.class);
+                    arrayList.add(member);
+                   // Log.d("TAG", name);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        };
+        databaseReference.addListenerForSingleValueEvent(eventListener);
+         */
+
+
+
+        /*
+        databaseReference2 = database.getReference("Alibi").child("Member").child("time"); // DB 테이블 연결
+        databaseReference2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // 파이어베이스 데이터베이스의 데이터를 받아오는 곳
+                arrayList2.clear(); // 기존 배열리스트가 존재하지 않게 초기화
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) { // 반복문으로 데이터 List를 추출해냄
+                    Time time = snapshot.getValue(Time.class); // Member 객체에 데이터 담음
+                    arrayList2.add(time); // 담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+
+                }
+
+                customAdapterFrag3.notifyDataSetChanged(); // 리스트 저장 및 새로고침
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // DB를 가져오던 중 에러 발생 시
+                Log.e("Frag3", String.valueOf(databaseError.toException())); // 에러문 출력
+            }
+        });
+
+         */
+
+
+
+
+
+
+
+
         /* No Use -> 나중에 imageview로 chg.
         mSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,7 +165,9 @@ public class Frag3 extends Fragment {
         });
         */
 
-        customAdapterFrag3 = new CustomAdapterFrag3(arrayList, getActivity().getApplicationContext());
+
+
+        customAdapterFrag3 = new CustomAdapterFrag3(arrayList, arrayList2, getActivity().getApplicationContext());
         recyclerView.setAdapter(customAdapterFrag3); // 리사이클러뷰에 어댑터 연결
 
 

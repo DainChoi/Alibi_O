@@ -23,16 +23,18 @@ import java.util.ArrayList;
 class CustomAdapterFrag3 extends RecyclerView.Adapter<CustomAdapterFrag3.CustomViewHolder> {
 
     private ArrayList<Member> arrayList;
+    private ArrayList<Time> arrayList2;
 
     private Context context;
     DatabaseReference databaseReference;
 
-  //  EditText sun_in_input, mon_in_input, tue_in_input, wed_in_input, thu_in_input, fri_in_input, sat_in_input;
-  //  EditText sun_out_input, mon_out_input, tue_out_input, wed_out_input, thu_out_input, fri_out_input, sat_out_input;
+    //  EditText sun_in_input, mon_in_input, tue_in_input, wed_in_input, thu_in_input, fri_in_input, sat_in_input;
+    //  EditText sun_out_input, mon_out_input, tue_out_input, wed_out_input, thu_out_input, fri_out_input, sat_out_input;
 
 
-    public CustomAdapterFrag3(ArrayList<Member> arrayList, Context context) {
+    public CustomAdapterFrag3(ArrayList<Member> arrayList, ArrayList<Time> arrayList2, Context context) {
         this.arrayList = arrayList;
+        this.arrayList2 = arrayList2;
         this.context = context;
     }
 
@@ -53,9 +55,53 @@ class CustomAdapterFrag3 extends RecyclerView.Adapter<CustomAdapterFrag3.CustomV
         // Error: 다른 fragment를 들어갔다 나와야 추가되어 있음
         // holder.name_text.setText(arrayList.get(position).getName());
 
-        // final Member member = arrayList.get(position);
+        final Member member = arrayList.get(position);
+        //  final Time time = arrayList2.get(position);
         // Name을 recyclerview로 나타나게
         holder.name_text.setText(arrayList.get(position).getName());
+
+
+        /*
+        holder.sun_in_input.setText(String.valueOf(arrayList2.get(position).getSun_in()));
+        holder.mon_in_input.setText(String.valueOf(arrayList2.get(position).getMon_in()));
+        holder.tue_in_input.setText(String.valueOf(arrayList2.get(position).getTue_in()));
+        holder.wed_in_input.setText(String.valueOf(arrayList2.get(position).getWed_in()));
+        holder.thu_in_input.setText(String.valueOf(arrayList2.get(position).getThu_in()));
+        holder.fri_in_input.setText(String.valueOf(arrayList2.get(position).getFri_in()));
+        holder.sat_in_input.setText(String.valueOf(arrayList2.get(position).getSat_in()));
+
+        holder.sun_out_input.setText(String.valueOf(arrayList2.get(position).getSun_out()));
+        holder.mon_out_input.setText(String.valueOf(arrayList2.get(position).getMon_out()));
+        holder.tue_out_input.setText(String.valueOf(arrayList2.get(position).getTue_out()));
+        holder.wed_out_input.setText(String.valueOf(arrayList2.get(position).getWed_out()));
+        holder.thu_out_input.setText(String.valueOf(arrayList2.get(position).getThu_out()));
+        holder.fri_out_input.setText(String.valueOf(arrayList2.get(position).getFri_out()));
+        holder.sat_out_input.setText(String.valueOf(arrayList2.get(position).getSat_out()));
+
+
+         */
+
+
+        // ERROR?
+        holder.sun_in_input.setText(arrayList2.get(position).getSun_in());
+        holder.mon_in_input.setText(arrayList2.get(position).getMon_in());
+        holder.tue_in_input.setText(arrayList2.get(position).getTue_in());
+        holder.wed_in_input.setText(arrayList2.get(position).getWed_in());
+        holder.thu_in_input.setText(arrayList2.get(position).getThu_in());
+        holder.fri_in_input.setText(arrayList2.get(position).getFri_in());
+        holder.sat_in_input.setText(arrayList2.get(position).getSat_in());
+
+        holder.sun_out_input.setText(arrayList2.get(position).getSun_out());
+        holder.mon_out_input.setText(arrayList2.get(position).getMon_out());
+        holder.tue_out_input.setText(arrayList2.get(position).getTue_out());
+        holder.wed_out_input.setText(arrayList2.get(position).getWed_out());
+        holder.thu_out_input.setText(arrayList2.get(position).getThu_out());
+        holder.fri_out_input.setText(arrayList2.get(position).getFri_out());
+        holder.sat_out_input.setText(arrayList2.get(position).getSat_out());
+
+
+
+
 
     }
 
@@ -67,8 +113,8 @@ class CustomAdapterFrag3 extends RecyclerView.Adapter<CustomAdapterFrag3.CustomV
 
     public class CustomViewHolder extends RecyclerView.ViewHolder {
         TextView name_text;
-       // LinearLayout mainLayout;
-        ImageButton btn_check;
+        // LinearLayout mainLayout;
+        ImageButton btn_modify;
 
         EditText sun_in_input, mon_in_input, tue_in_input, wed_in_input, thu_in_input, fri_in_input, sat_in_input;
         EditText sun_out_input, mon_out_input, tue_out_input, wed_out_input, thu_out_input, fri_out_input, sat_out_input;
@@ -77,7 +123,7 @@ class CustomAdapterFrag3 extends RecyclerView.Adapter<CustomAdapterFrag3.CustomV
         public CustomViewHolder(@NonNull View itemView) {
             super(itemView);
             name_text = (TextView) itemView.findViewById(R.id.name_text);
-            btn_check = (ImageButton) itemView.findViewById(R.id.btn_check);
+            btn_modify = (ImageButton) itemView.findViewById(R.id.btn_modify);
 
             sun_in_input = (EditText) itemView.findViewById(R.id.sun_in);
             mon_in_input = (EditText) itemView.findViewById(R.id.mon_in);
@@ -95,7 +141,7 @@ class CustomAdapterFrag3 extends RecyclerView.Adapter<CustomAdapterFrag3.CustomV
             fri_out_input = (EditText) itemView.findViewById(R.id.fri_out);
             sat_out_input = (EditText) itemView.findViewById(R.id.sat_out);
 
-            btn_check.setOnClickListener(new View.OnClickListener() {
+            btn_modify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
 
@@ -130,8 +176,8 @@ class CustomAdapterFrag3 extends RecyclerView.Adapter<CustomAdapterFrag3.CustomV
                             int position = getAdapterPosition();
                             final Member member = arrayList.get(position);
 
-                            databaseReference.child(member.getName()).child("time").setValue(time);
-                           // holder.name_text.setText(arrayList.get(position).getName());
+                            databaseReference.child(member.getName()).child("Time").setValue(time);
+                            // holder.name_text.setText(arrayList.get(position).getName());
 
                         }
                     });

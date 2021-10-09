@@ -100,7 +100,6 @@ public class Frag4 extends Fragment {
 
 
 
-
         FloatingActionButton btn_add = (FloatingActionButton) view.findViewById(R.id.btn_add);
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override

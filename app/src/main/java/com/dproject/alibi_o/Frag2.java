@@ -55,7 +55,7 @@ public class Frag2 extends Fragment {
             }
         });
         databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("Alibi").child("TimeIn").child("01:30").child("time_in").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Alibi").child("TimeIn").child("09:22").child("time_in").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String value = dataSnapshot.getValue(String.class);
@@ -69,7 +69,7 @@ public class Frag2 extends Fragment {
             }
         });
 
-        databaseReference.child("Alibi").child("TimeOut").child("01:31").child("time_out").addValueEventListener(new ValueEventListener() {
+        databaseReference.child("Alibi").child("TimeOut").child("09:23").child("time_out").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 String value = dataSnapshot.getValue(String.class);

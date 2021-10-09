@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_app_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".WorkAddActivity"></activity>
+        <activity
+            android:name=".Frag3AddActivity"
+            android:exported="true" />
+        <activity android:name=".WorkAddActivity" />
         <activity android:name=".AskActivity" />
         <activity android:name=".AddActivity" />
         <activity android:name=".WorkRegisterActivity" />
